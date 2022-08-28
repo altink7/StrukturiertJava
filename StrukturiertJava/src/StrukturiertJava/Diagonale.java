@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Diagonale {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         int x = sc.nextInt(); // Eingabezahl
         System.out.printf(": ");
