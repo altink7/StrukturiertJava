@@ -111,7 +111,7 @@ public class ArbeitRelevantUmsaetze {
         int highestRev = 0;
         for(int i=0; i<revenues.length; i++){
             for(int j=0; j<revenues[i].length; j++){
-                highestRev = highestRev < revenues[i][j] ? revenues[i][j] : highestRev;
+                highestRev = Math.max(highestRev, revenues[i][j]);
             }
         }
 
@@ -142,7 +142,7 @@ public class ArbeitRelevantUmsaetze {
         };
 
 
-        System.out.printf("Test#: ");
+        System.out.print("Test#: ");
         int n=sc.nextInt();
         if(n<1 || n> tests.length+1){
             System.out.println("unknown test.");
