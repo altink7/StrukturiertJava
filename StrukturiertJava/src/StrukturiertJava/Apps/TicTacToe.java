@@ -2,6 +2,7 @@ package StrukturiertJava.Apps;
 import java.util.Scanner;
 
 public class TicTacToe {
+
     public static void main(String[] args){
         playGame();
     }
@@ -18,10 +19,10 @@ public class TicTacToe {
     }
 
     public static void print(char[][] field) {
-        for (int i = 0; i < field.length; i++) {
-            String line = "" + field[i][0];
+        for (char[] chars : field) {
+            StringBuilder line = new StringBuilder("" + chars[0]);
             for (int j = 1; j < field[0].length; j++) {
-                line += " " + field[i][j];
+                line.append(" ").append(chars[j]);
             }
             System.out.println(line);
         }

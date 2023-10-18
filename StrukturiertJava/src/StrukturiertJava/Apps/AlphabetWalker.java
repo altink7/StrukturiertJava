@@ -6,26 +6,27 @@ import java.util.Scanner;
 public class AlphabetWalker {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         int horizontal=0;
         int vertikal=0;
-        int counter=0;
         int alphabetcounter=1;
         int A1=0;
         int A2=0;
 
         String[][] feld= new String [10][10];
         char[] alphabet = new char[26];
+
         char a = 65; //erster Buchstabe (großes A)
+
         for(int i = 0; i < alphabet.length; i++, a++) {
             alphabet[i] = a;
         }
 
         for(int i =0;i<10;i++){
             for(int j=0;j<10;j++){
-                if(i==0 && j==0){
+                if(i==0 && j==0) {
                     feld[i][j]="A";
-                }
-                else{
+                } else {
                     feld[i][j]=".";
                 }
                 System.out.print(feld[i][j]);
@@ -62,7 +63,6 @@ public class AlphabetWalker {
                                 A2=l;
                             }
 
-                            counter++;
                             System.out.print(feld[k][l]);
                         }
                         System.out.print("\n");
