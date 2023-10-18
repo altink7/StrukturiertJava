@@ -109,9 +109,9 @@ public class ArbeitRelevantUmsaetze {
         System.out.printf("\nmax branch is branch %d with total revenue of %d.\n", maxBranch, sumBranch(revenues, maxBranch));
 
         int highestRev = 0;
-        for(int i=0; i<revenues.length; i++){
-            for(int j=0; j<revenues[i].length; j++){
-                highestRev = Math.max(highestRev, revenues[i][j]);
+        for (int[] revenue : revenues) {
+            for (int i : revenue) {
+                highestRev = Math.max(highestRev, i);
             }
         }
 

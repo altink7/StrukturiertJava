@@ -9,7 +9,7 @@ public class AlphabetWalker {
 
         int horizontal=0;
         int vertikal=0;
-        int alphabetcounter=1;
+        int alphabetCounter=1;
         int A1=0;
         int A2=0;
 
@@ -50,15 +50,13 @@ public class AlphabetWalker {
                     horizontal = A2;
                     vertikal = A1;
                     System.out.print("You cannot go there!\n");
-                    System.out.print("Enter direction command: \n");
-                    x = sc.nextInt();
                 }
                 else{
                     for (int k = 0; k < 10; k++) {
                         for (int l = 0; l < 10; l++) {
                             if(k == vertikal && l == horizontal && Objects.equals(feld[k][l], ".")){
-                                feld[k][l]= String.valueOf(alphabet[alphabetcounter%26]);
-                                alphabetcounter++;
+                                feld[k][l]= String.valueOf(alphabet[alphabetCounter%26]);
+                                alphabetCounter++;
                                 A1= k;
                                 A2=l;
                             }
@@ -66,17 +64,14 @@ public class AlphabetWalker {
                             System.out.print(feld[k][l]);
                         }
                         System.out.print("\n");
-                    }System.out.print("Enter direction command: \n");
-                    x = sc.nextInt();
+                    }
 
                 }
 
 
             }
-            else {
-                System.out.print("Enter direction command: \n");
-                x = sc.nextInt();
-            }
+            System.out.print("Enter direction command: \n");
+            x = sc.nextInt();
         }
         sc.close();
     }

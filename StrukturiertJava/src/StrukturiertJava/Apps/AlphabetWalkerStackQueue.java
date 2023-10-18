@@ -8,13 +8,13 @@ public class AlphabetWalkerStackQueue{
         Scanner sc = new Scanner(System.in);
         int horizontal=0;
         int vertikal=0;
-        int alphabetcounter=1;
+        int alphabetCounter=1;
         int A1=0;
         int A2=0;
-        int stackValue=-1;
-        int stack2Value=-1;
+        int stackValue;
+        int stack2Value;
         int decodeStackValue=-1;
-        int decodeStack2Value=-1;
+        int decodeStack2Value;
         Stack stack=new Stack();
         Stack stack2=new Stack();
 
@@ -71,8 +71,8 @@ public class AlphabetWalkerStackQueue{
 
                             if(k == vertikal && l == horizontal && Objects.equals(feld[k][l], ".")){
 
-                                feld[k][l]= String.valueOf(alphabet[alphabetcounter%26]);
-                                alphabetcounter++;
+                                feld[k][l]= String.valueOf(alphabet[alphabetCounter%26]);
+                                alphabetCounter++;
                                 A1= k;
                                 A2=l;
                                 stackValue=(k*10)+l;
@@ -93,7 +93,7 @@ public class AlphabetWalkerStackQueue{
                         for (int l = 0; l < 10; l++) {
                             if((decodeStackValue!=0&&(k==decodeStackValue/10 &&l==decodeStackValue%10))){
                                 feld[k][l]=".";
-                                alphabetcounter--;
+                                alphabetCounter--;
                                 vertikal= k;
                                 horizontal=l;
                                 changeVariable=1;
@@ -125,17 +125,17 @@ public class AlphabetWalkerStackQueue{
                     if(decodeStackValue==0) {
                         System.out.println("Nothing to undo!");
                         System.out.print("Enter direction command: \n");
-                        x = sc.nextInt();
+                        sc.nextInt();
                     }
-                    else if(changeVariable==0&&decodeStackValue!=0){
+                    else if(changeVariable == 0){
                         vertikal+=1;
 
                         for (int o = 0; o < 10; o++) {
                             for (int u = 0; u < 10; u++) {
 
                                 if(o == vertikal && u == horizontal && Objects.equals(feld[o][u], ".")) {
-                                    feld[o][u]= String.valueOf(alphabet[alphabetcounter%26]);
-                                    alphabetcounter++;
+                                    feld[o][u]= String.valueOf(alphabet[alphabetCounter%26]);
+                                    alphabetCounter++;
                                     A1= o;
                                     A2=u;
                                     stackValue=(o*10)+u;
@@ -150,8 +150,8 @@ public class AlphabetWalkerStackQueue{
                         for (int k = 0; k < 10; k++) {
                             for (int l = 0; l < 10; l++) {
                                 if (k == decodeStack2Value / 10 && l == decodeStack2Value % 10) {
-                                    feld[k][l] = String.valueOf(alphabet[alphabetcounter % 26]);
-                                    alphabetcounter++;
+                                    feld[k][l] = String.valueOf(alphabet[alphabetCounter % 26]);
+                                    alphabetCounter++;
                                     vertikal = k;
                                     horizontal = l;
                                     stackValue = (k * 10) + l;
