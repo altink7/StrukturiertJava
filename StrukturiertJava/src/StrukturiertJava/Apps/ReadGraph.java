@@ -1,4 +1,5 @@
 package StrukturiertJava.Apps;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ReadGraph {
@@ -9,14 +10,12 @@ public class ReadGraph {
         Scanner sc = new Scanner(System.in);
 
         int laenge = sc.nextInt();
-        int x=0;
-        int y=0;
+        int x;
+        int y;
         float wert;
-        double graph[][]= new double[laenge][laenge];
-        for(int m=0;m<graph.length;m++){
-            for(int n=0;n<graph[m].length;n++){
-                graph[m][n]=oo;
-            }
+        double[][] graph = new double[laenge][laenge];
+        for (double[] doubles : graph) {
+            Arrays.fill(doubles, oo);
         }
 
         while(true){
@@ -33,24 +32,24 @@ public class ReadGraph {
 
         }
 
-        writegraph(graph);
+        writeGraph(graph);
         sc.close();
 
 
     }
 
-    public static void writegraph(double graph[][]) {
+    public static void writeGraph(double[][] graph) {
 
         int i, j;
 
-        System.out.printf("digraph mygraph {\n");
-        System.out.printf("node [style = filled, color = black, fontcolor = white]\n");
+        System.out.print("digraph mygraph {\n");
+        System.out.print("node [style = filled, color = black, fontcolor = white]\n");
 
         for (i = 0; i < graph.length; i++)
             for (j = 0; j < graph[i].length; j++)
                 if (graph[i][j] != oo)
                     System.out.printf("    %c -> %c [label = %.1f]\n", i + 'A', j + 'A', graph[i][j]);
-        System.out.printf("}\n");
+        System.out.print("}\n");
 
     }
 }

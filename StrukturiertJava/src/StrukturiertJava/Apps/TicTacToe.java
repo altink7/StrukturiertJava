@@ -78,9 +78,9 @@ public class TicTacToe {
 
         if (check) {
             if (werhatGewonnen == 1) {
-                System.out.printf("X wins!\n");
+                System.out.print("X wins!\n");
             } else {
-                System.out.printf("O wins!\n");
+                System.out.print("O wins!\n");
             }
         }
         return check;

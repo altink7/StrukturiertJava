@@ -22,9 +22,7 @@ public class NumberPairs {
 
         int[][] doubleValue= new int[Sequenzsum][2];
         for(int f=0;f< doubleValue.length;f++){
-            for(int n=0;n< 2;n++){
-                doubleValue[f][n]=PaarValue[n+f];
-            }
+            System.arraycopy(PaarValue, f, doubleValue[f], 0, 2);
         }
         bubble(doubleValue,0);
 

@@ -19,14 +19,14 @@ public class RaupeFlitzi {
 
         Scanner sc = new Scanner(System.in);
         // Funktionen
-        LinkedList<String> createNode = new LinkedList<String>();
+        LinkedList<String> createNode = new LinkedList<>();
 
-        Segment head= new Segment();
-        System.out.printf("Create:\n");
+        new Segment();
+        System.out.print("Create:\n");
 
 
         while (true) {
-            System.out.printf(": ");
+            System.out.print(": ");
             String t = sc.next();
 
             if (t.equals("x"))
@@ -34,20 +34,20 @@ public class RaupeFlitzi {
             createNode.add(t);
         }
 
-        System.out.printf("Action (p|g|d|s): ");
-        String action, t;
+        System.out.print("Action (p|g|d|s): ");
+        String action;
         action = sc.next();
 
         switch (action) {
             case "p": /// Print
-                for (int i = 0; i < createNode.size(); i++) {
-                    System.out.println("(" + createNode.get(i) + ")");
+                for (String s : createNode) {
+                    System.out.println("(" + s + ")");
                 }
                 break;
             case "g": /// GetAt
                 int idx = sc.nextInt();
                 if(idx >25||idx<0){
-                    System.out.printf("Index: Invalid index\n");
+                    System.out.print("Index: Invalid index\n");
                 }
                 else {
                     System.out.printf("Index: (" + createNode.get(idx) + ")\n");
@@ -74,7 +74,7 @@ public class RaupeFlitzi {
                 break;
             case "s": // Sublist
 
-                System.out.printf("Type: ");
+                System.out.print("Type: ");
                 String neuesB = sc.next();
                 int AnzahlDerBuchtabe=0;
                 for(int i=0;i<createNode.size();i++) {

@@ -11,35 +11,25 @@ public class StackQueue {
 
         while(!values.equals("=")){
 
-            if(values.equals("*")){
-                push(stack1,pop(stack1)*pop(stack1));
-
-            }
-            else if(values.equals("/")){
-                int division1=pop(stack1);
-                int division2=pop(stack1);
-                push(stack1,division2/division1);
-
-            }
-            else if(values.equals("%")){
-                int modulo1=pop(stack1);
-                int modulo2=pop(stack1);
-                push(stack1,modulo2%modulo1);
-
-
-            }
-            else if(values.equals("+")){
-                push(stack1,pop(stack1)+pop(stack1));
-            }
-            else if(values.equals("-")){
-                int minus1=pop(stack1);
-                int minus2=pop(stack1);
-
-                push(stack1,minus2-minus1);
-
-            }
-            else{
-                push(stack1,Integer.parseInt(values));
+            switch (values) {
+                case "*" -> push(stack1, pop(stack1) * pop(stack1));
+                case "/" -> {
+                    int division1 = pop(stack1);
+                    int division2 = pop(stack1);
+                    push(stack1, division2 / division1);
+                }
+                case "%" -> {
+                    int modulo1 = pop(stack1);
+                    int modulo2 = pop(stack1);
+                    push(stack1, modulo2 % modulo1);
+                }
+                case "+" -> push(stack1, pop(stack1) + pop(stack1));
+                case "-" -> {
+                    int minus1 = pop(stack1);
+                    int minus2 = pop(stack1);
+                    push(stack1, minus2 - minus1);
+                }
+                default -> push(stack1, Integer.parseInt(values));
             }
             values = sc.next();
         }

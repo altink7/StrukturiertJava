@@ -10,14 +10,14 @@ public class LoopMinIdx {
         int counter = 1;
         int zahl = 1;
         int A1 = 0;
-        System.out.printf(": ");
+        System.out.print(": ");
 
         while (n>0){
             while(n >0){
                 if (n==1){ zahl = counter;
                     A1 = 100; }
 
-                System.out.printf(": ");
+                System.out.print(": ");
                 n = sc.nextInt();
                 counter++;
 

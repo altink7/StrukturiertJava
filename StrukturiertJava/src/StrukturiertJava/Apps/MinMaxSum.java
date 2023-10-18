@@ -1,12 +1,11 @@
 package StrukturiertJava.Apps;
 
-import java.util.Collections;
 import java.util.Scanner;
 
 public class MinMaxSum {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.printf(": ");
+        System.out.print(": ");
 
         int x1 = sc.nextInt();
         int x2 = sc.nextInt();
@@ -15,7 +14,6 @@ public class MinMaxSum {
         int x5 = sc.nextInt();
         //array => zu schnell fertig :(
 
-        Collections math;
 
         int g2 = Math.max(x1,x2);
         int g4 = Math.max(x3,x4);
