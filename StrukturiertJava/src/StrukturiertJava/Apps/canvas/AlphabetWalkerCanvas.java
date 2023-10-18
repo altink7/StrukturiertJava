@@ -9,27 +9,23 @@ public class AlphabetWalkerCanvas extends JPanel {
     private int horizontal = 0;
     private int vertical = 0;
     private final char[] alphabet = new char[26];
-    private int currentLetter = 0; // Aktueller Buchstabe als numerischer Wert
-    private final boolean[][] visited; // Ein Feld, um zu verfolgen, welche Felder besucht wurden
+    private final char[][] visitedLetters; // An array to store the letter for each cell
 
     public AlphabetWalkerCanvas() {
-        for (int i = 0; i < alphabet.length; i++) {
-            alphabet[i] = (char) ('A' + i);
+        char currentLetter = 'A';
+        for (int i = 0; i < alphabet.length; i++, currentLetter++) {
+            alphabet[i] = currentLetter;
         }
 
-        visited = new boolean[10][10]; // Initialisiere das Feld für die Besuche
+        visitedLetters = new char[10][10]; // Initialize the array to store visited letters
 
-        Timer timer = new Timer(500, e -> {
-            // Repaint
-            repaint();
-        });
+        Timer timer = new Timer(500, e -> repaint());
         timer.start();
 
-        setFocusable(true); // Aktiviere die Tastaturfokussierung
+        setFocusable(true);
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                // Behandle die Benutzereingabe, um den Walker zu bewegen
                 int key = e.getKeyCode();
                 if (key == KeyEvent.VK_UP && vertical > 0) {
                     vertical--;
@@ -41,16 +37,25 @@ public class AlphabetWalkerCanvas extends JPanel {
                     horizontal++;
                 }
 
-                if (!visited[vertical][horizontal]) {
-                    visited[vertical][horizontal] = true;
-                    if (currentLetter < 25) {
-                        currentLetter++;
-                    }
+                if (visitedLetters[vertical][horizontal] == 0) {
+                    visitedLetters[vertical][horizontal] = alphabet[visitedCount()];
                 }
 
                 repaint();
             }
         });
+    }
+
+    private int visitedCount() {
+        int count = 0;
+        for (char[] row : visitedLetters) {
+            for (char letter : row) {
+                if (letter != 0) {
+                    count++;
+                }
+            }
+        }
+        return count%26;
     }
 
     @Override
@@ -63,16 +68,16 @@ public class AlphabetWalkerCanvas extends JPanel {
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                if (visited[i][j]) {
-                    g.setColor(Color.YELLOW); // Hintergrund in Gelb für besuchte Felder
+                if (visitedLetters[i][j] != 0) {
+                    g.setColor(Color.YELLOW); // Background in Yellow for visited cells
                 } else {
-                    g.setColor(Color.WHITE); // Hintergrund in Weiß für nicht besuchte Felder
+                    g.setColor(Color.WHITE); // Background in White for unvisited cells
                 }
                 g.fillRect(startX + j * cellSize, startY + i * cellSize, cellSize, cellSize);
 
-                if (i == vertical && j == horizontal) {
+                if (visitedLetters[i][j] != 0) {
                     g.setColor(Color.BLACK);
-                    g.drawString(String.valueOf(alphabet[currentLetter]), startX + j * cellSize + 10, startY + i * cellSize + 20);
+                    g.drawString(String.valueOf(visitedLetters[i][j]), startX + j * cellSize + 10, startY + i * cellSize + 20);
                 }
             }
         }
