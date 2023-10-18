@@ -23,9 +23,9 @@ public class GameOfLife {
         while(x>0){
 
 
-            for (int i =0;i<field.length;i++) {
+            for (char[] chars : field) {
                 for (int j = 0; j < field[0].length; j++) {
-                    System.out.printf("%s", field[i][j]);
+                    System.out.printf("%s", chars[j]);
                 }
                 System.out.println();
             }
