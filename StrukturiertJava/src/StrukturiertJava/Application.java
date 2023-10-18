@@ -31,7 +31,7 @@ public class Application {
                 Diagonale.main(args);
             } else if(appValue ==6){
                 welcomeText();
-                DjikstraAlg.main(args);
+                DijkstraAlg.main(args);
             } else if(appValue ==7){
                 welcomeText();
                 DjikstraShortestPath.main(args);

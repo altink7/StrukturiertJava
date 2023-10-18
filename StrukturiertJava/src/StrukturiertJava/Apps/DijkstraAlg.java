@@ -1,6 +1,6 @@
 package StrukturiertJava.Apps;
 
-public class DjikstraAlg {
+public class DijkstraAlg {
     public static void main(String[] args) {
         final int x = Integer.MAX_VALUE;
 
@@ -21,10 +21,10 @@ public class DjikstraAlg {
     public static double meanLength(int[][] g){
         double Length=0;
         int Anzahl=0;
-        for(int i=0;i<g.length;i++){
-            for(int j=0;j<g[i].length;j++){
-                if(g[i][j]!=Integer.MAX_VALUE){
-                    Length+=g[i][j];
+        for (int[] ints : g) {
+            for (int anInt : ints) {
+                if (anInt != Integer.MAX_VALUE) {
+                    Length += anInt;
                     Anzahl++;
                 }
             }
