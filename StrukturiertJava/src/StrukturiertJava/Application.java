@@ -34,7 +34,7 @@ public class Application {
                 DijkstraAlg.main(args);
             } else if(appValue ==7){
                 welcomeText();
-                DjikstraShortestPath.main(args);
+                DijkstraShortestPath.main(args);
             } else if(appValue ==8){
                 welcomeText();
                 FitnessAlg.main(args);

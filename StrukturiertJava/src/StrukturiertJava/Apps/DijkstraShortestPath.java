@@ -1,7 +1,8 @@
 package StrukturiertJava.Apps;
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class DjikstraShortestPath{
+public class DijkstraShortestPath {
     static final double oo = Double.POSITIVE_INFINITY;
 
     public static void main(String[] args) {
@@ -10,22 +11,19 @@ public class DjikstraShortestPath{
         System.out.println("**Bitte folgen Sie der Anleitung, um den kürzesten Weg zu bestimmen-altinpage41.pdf**");
 
         int laenge = sc.nextInt();
-        int x=0;
-        int y=0;
+        int x;
+        int y;
         float wert;
-        double graph[][]= new double[laenge][laenge];
+        double[][] graph = new double[laenge][laenge];
         int CONSTANT=graph.length;
-        int[] preced= new int[CONSTANT];
+        int[] precede= new int[CONSTANT];
         double[] distance= new double[CONSTANT];
         int i;
         float Summe=0;
 
 
-
-        for(int m=0;m<graph.length;m++){
-            for(int n=0;n<graph[m].length;n++){
-                graph[m][n]=oo;
-            }
+        for (double[] doubles : graph) {
+            Arrays.fill(doubles, oo);
         }
 
         while(true){
@@ -43,7 +41,7 @@ public class DjikstraShortestPath{
         }
         int start=sc.nextInt();
         int finish=sc.nextInt();
-        dijkstra(graph,preced, distance, start, finish);
+        dijkstra(graph,precede, distance);
 
         int j = finish;
         for (i = start; i < CONSTANT; i++) {
@@ -53,7 +51,7 @@ public class DjikstraShortestPath{
         }
         while (j != 0) {
             System.out.printf("%c <- ", j+'A');
-            j = preced[j];
+            j = precede[j];
         }
         System.out.printf("%c (%1.1f)\n", start+'A',Summe);
 
@@ -63,7 +61,7 @@ public class DjikstraShortestPath{
 
     }
 
-    public static boolean allselected(int[] selected) {
+    public static boolean allSelected(int[] selected) {
         int i;
         for (i = 0; i < selected.length; i++)
             if (selected[i] == 0)
@@ -71,12 +69,12 @@ public class DjikstraShortestPath{
         return true;
     }
 
-    public static void dijkstra(double[][] graph, int[] precede, double[] distance, int start, int finish) {
+    public static void dijkstra(double[][] graph, int[] precede, double[] distance) {
         //
         int[] finalG = new int[graph.length];
 
         int current=0;
-        int i=-1;
+        int i;
         int k=-1;
         double dc,smalldist, newdist;
         //init distances
@@ -87,10 +85,9 @@ public class DjikstraShortestPath{
         //init algo
         finalG[current] = 1;    //set A final
         distance[0] = 0;        //distance 0 from A to A
-        current =0;            //select A
 
 
-        while (!allselected(finalG)) {
+        while (!allSelected(finalG)) {
             smalldist = oo;
             dc = distance[current];
 
