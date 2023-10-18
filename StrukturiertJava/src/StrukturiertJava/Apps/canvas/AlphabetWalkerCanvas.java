@@ -2,29 +2,55 @@ package StrukturiertJava.Apps.canvas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class AlphabetWalkerCanvas extends JPanel {
     private int horizontal = 0;
     private int vertical = 0;
-    private int alphabetCounter = 1;
     private final char[] alphabet = new char[26];
+    private char currentLetter = 'A'; // Aktueller Buchstabe
+    private boolean[][] visited; // Ein Feld, um zu verfolgen, welche Felder besucht wurden
 
     public AlphabetWalkerCanvas() {
-        char currentLetter = 'A';
         for (int i = 0; i < alphabet.length; i++, currentLetter++) {
             alphabet[i] = currentLetter;
         }
 
+        visited = new boolean[10][10]; // Initialisiere das Feld für die Besuche
+
         Timer timer = new Timer(500, e -> {
-            if (horizontal > 9 || horizontal < 0 || vertical < 0 || vertical > 9) {
-                horizontal = 0;
-                vertical = 0;
-            } else {
-                alphabetCounter++;
-            }
+            // Repaint
             repaint();
         });
         timer.start();
+
+        setFocusable(true); // Aktiviere die Tastaturfokussierung
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // Behandle die Benutzereingabe, um den Walker zu bewegen
+                int key = e.getKeyCode();
+                if (key == KeyEvent.VK_UP && vertical > 0) {
+                    vertical--;
+                } else if (key == KeyEvent.VK_DOWN && vertical < 9) {
+                    vertical++;
+                } else if (key == KeyEvent.VK_LEFT && horizontal > 0) {
+                    horizontal--;
+                } else if (key == KeyEvent.VK_RIGHT && horizontal < 9) {
+                    horizontal++;
+                }
+
+                if (!visited[vertical][horizontal]) {
+                    visited[vertical][horizontal] = true;
+                    if (currentLetter < 'Z') {
+                        currentLetter++;
+                    }
+                }
+
+                repaint();
+            }
+        });
     }
 
     @Override
@@ -37,14 +63,17 @@ public class AlphabetWalkerCanvas extends JPanel {
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                char cellLetter = alphabet[alphabetCounter % 26];
-                if (i == vertical && j == horizontal) {
-                    g.setColor(Color.RED);
+                if (visited[i][j]) {
+                    g.setColor(Color.YELLOW); // Hintergrund in Gelb für besuchte Felder
                 } else {
-                    g.setColor(Color.BLACK);
+                    g.setColor(Color.WHITE); // Hintergrund in Weiß für nicht besuchte Felder
                 }
-                g.drawRect(startX + j * cellSize, startY + i * cellSize, cellSize, cellSize);
-                g.drawString(String.valueOf(cellLetter), startX + j * cellSize + 10, startY + i * cellSize + 20);
+                g.fillRect(startX + j * cellSize, startY + i * cellSize, cellSize, cellSize);
+
+                if (i == vertical && j == horizontal) {
+                    g.setColor(Color.BLACK);
+                    g.drawString(String.valueOf(currentLetter), startX + j * cellSize + 10, startY + i * cellSize + 20);
+                }
             }
         }
     }

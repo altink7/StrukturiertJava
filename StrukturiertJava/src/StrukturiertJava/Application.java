@@ -1,6 +1,6 @@
 package StrukturiertJava;
 
-import StrukturiertJava.Apps.*;
+import StrukturiertJava.Apps.console.*;
 
 import java.util.Scanner;
 
