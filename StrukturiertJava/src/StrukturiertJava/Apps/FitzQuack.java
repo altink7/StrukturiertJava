@@ -5,19 +5,20 @@ public class FitzQuack {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int x= sc.nextInt();
-        int A1 = 0;
-        System.out.printf(": ");
+
+        System.out.print(": ");
+
         for (int i=1;i<=x;i++){
 
             if(i%35==0){
-                System.out.printf("FitzQuack");
+                System.out.print("FitzQuack");
             }
             else if(i%5==0){
-                System.out.printf("Fitz");
+                System.out.print("Fitz");
             }
 
             else if(i%7==0){
-                System.out.printf("Quack");
+                System.out.print("Quack");
             }
 
             else{
@@ -26,7 +27,6 @@ public class FitzQuack {
 
             System.out.print((i%10==0? "\n":" "));
             sc.close();
-
         }
     }
 }
