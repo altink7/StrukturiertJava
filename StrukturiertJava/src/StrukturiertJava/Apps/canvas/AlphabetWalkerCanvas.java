@@ -9,12 +9,12 @@ public class AlphabetWalkerCanvas extends JPanel {
     private int horizontal = 0;
     private int vertical = 0;
     private final char[] alphabet = new char[26];
-    private char currentLetter = 'A'; // Aktueller Buchstabe
-    private boolean[][] visited; // Ein Feld, um zu verfolgen, welche Felder besucht wurden
+    private int currentLetter = 0; // Aktueller Buchstabe als numerischer Wert
+    private final boolean[][] visited; // Ein Feld, um zu verfolgen, welche Felder besucht wurden
 
     public AlphabetWalkerCanvas() {
-        for (int i = 0; i < alphabet.length; i++, currentLetter++) {
-            alphabet[i] = currentLetter;
+        for (int i = 0; i < alphabet.length; i++) {
+            alphabet[i] = (char) ('A' + i);
         }
 
         visited = new boolean[10][10]; // Initialisiere das Feld für die Besuche
@@ -43,7 +43,7 @@ public class AlphabetWalkerCanvas extends JPanel {
 
                 if (!visited[vertical][horizontal]) {
                     visited[vertical][horizontal] = true;
-                    if (currentLetter < 'Z') {
+                    if (currentLetter < 25) {
                         currentLetter++;
                     }
                 }
@@ -72,7 +72,7 @@ public class AlphabetWalkerCanvas extends JPanel {
 
                 if (i == vertical && j == horizontal) {
                     g.setColor(Color.BLACK);
-                    g.drawString(String.valueOf(currentLetter), startX + j * cellSize + 10, startY + i * cellSize + 20);
+                    g.drawString(String.valueOf(alphabet[currentLetter]), startX + j * cellSize + 10, startY + i * cellSize + 20);
                 }
             }
         }
