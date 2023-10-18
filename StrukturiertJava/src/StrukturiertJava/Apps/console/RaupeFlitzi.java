@@ -1,4 +1,4 @@
-package StrukturiertJava.Apps;
+package StrukturiertJava.Apps.console;
 import javax.swing.text.Segment;
 import java.util.Objects;
 import java.util.Scanner;

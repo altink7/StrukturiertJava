@@ -1,8 +1,7 @@
-package StrukturiertJava.Apps;
-
+package StrukturiertJava.Apps.console;
 import java.util.Scanner;
 
-public class StarWriter {
+public class Diagonale {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -17,13 +16,14 @@ public class StarWriter {
         for(int n =x;n>0;n--){ // vertikale Achse
 
             for(int i=x;i>0;i--){//horizontale Achse
-                System.out.print((fix-i==0)||(m-fix==i-1)||i-1==m/2||n-1==m/2?"*":"-");
+                System.out.print((fix-i==0)||(m-fix==i-1)?"*":"-");
 
             }
             System.out.print("\n");// Zeilenumbruch nach jeder x
             fix--;
         }
 
+        System.out.print("");//nur zum Kopieren hier, keine Funktion da weil
         sc.close();
     }
 }

@@ -1,4 +1,4 @@
-package StrukturiertJava.Apps;
+package StrukturiertJava.Apps.console;
 import java.util.Objects;
 import java.util.Scanner;
 

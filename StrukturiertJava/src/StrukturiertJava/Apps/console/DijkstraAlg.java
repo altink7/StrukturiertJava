@@ -1,4 +1,4 @@
-package StrukturiertJava.Apps;
+package StrukturiertJava.Apps.console;
 
 public class DijkstraAlg {
     public static void main(String[] args) {

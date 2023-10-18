@@ -1,4 +1,4 @@
-package StrukturiertJava.Apps;
+package StrukturiertJava.Apps.console;
 import java.util.Scanner;
 
 public class NeatMultTable {
