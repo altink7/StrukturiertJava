@@ -5,10 +5,14 @@ import java.awt.*;
 import java.util.Scanner;
 
 public class DiagonaleCanvas extends JPanel {
-    private int x;
+    private final int x;
+    private final char symbol;
+    private final char space;
 
-    public DiagonaleCanvas(int x) {
+    public DiagonaleCanvas(int x, char symbol, char space) {
         this.x = x;
+        this.symbol = symbol;
+        this.space = space;
     }
 
     @Override
@@ -16,13 +20,12 @@ public class DiagonaleCanvas extends JPanel {
         super.paintComponent(g);
 
         int fix = x; // Sterne from Left
-        int m = x; // Sterne from Right
         int startY = 20;
 
         for (int n = x; n > 0; n--) {
             for (int i = x; i > 0; i--) {
                 int startX = 20 + (x - i) * 20;
-                g.drawString((fix - i == 0) || (m - fix == i - 1) ? "*" : "-", startX, startY);
+                g.drawString((fix - i == 0) || (x - fix == i - 1) ? String.valueOf(symbol) : String.valueOf(space), startX, startY);
             }
             startY += 20;
             fix--;
@@ -37,9 +40,14 @@ public class DiagonaleCanvas extends JPanel {
             System.out.println("Please enter an odd number: ");
             x = sc.nextInt();
         }
+        System.out.println("Enter a symbol: ");
+        char symbol = sc.next().charAt(0);
+
+        System.out.println("Enter a space: ");
+        char space = sc.next().charAt(0);
 
         JFrame frame = new JFrame("DiagonaleCanvas");
-        DiagonaleCanvas canvas = new DiagonaleCanvas(x);
+        DiagonaleCanvas canvas = new DiagonaleCanvas(x, symbol, space);
         frame.add(canvas);
         frame.setSize(400, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

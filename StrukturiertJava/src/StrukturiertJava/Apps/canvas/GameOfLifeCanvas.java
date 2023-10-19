@@ -96,9 +96,12 @@ public class GameOfLifeCanvas extends JPanel {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Invalid input. Using default value.");
             }
+        }else {
+            // default should be 100
+            numRows = 100;
         }
 
-        int numCols = 30; // Number of columns in the grid
+        int numCols = 100; // Number of columns in the grid
 
         JFrame frame = new JFrame("Game of Life Canvas");
         GameOfLifeCanvas canvas = new GameOfLifeCanvas(numRows, numCols);

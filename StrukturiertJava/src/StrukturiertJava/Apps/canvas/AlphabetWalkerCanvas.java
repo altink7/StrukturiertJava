@@ -6,6 +6,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class AlphabetWalkerCanvas extends JPanel {
+    public static final int SIZE = 800;
+    public static final int BLOCK = 20;
     private int horizontal = 0;
     private int vertical = 0;
     private final char[] alphabet = new char[26];
@@ -17,7 +19,7 @@ public class AlphabetWalkerCanvas extends JPanel {
             alphabet[i] = currentLetter;
         }
 
-        visitedLetters = new char[10][10]; // Initialize the array to store visited letters
+        visitedLetters = new char[BLOCK][BLOCK]; // Initialize the array to store visited letters
 
         Timer timer = new Timer(500, e -> repaint());
         timer.start();
@@ -62,12 +64,12 @@ public class AlphabetWalkerCanvas extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        int cellSize = 30;
-        int startX = 20;
-        int startY = 20;
+        int cellSize = 60;
+        int startX = 40;
+        int startY = 40;
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < BLOCK; i++) {
+            for (int j = 0; j < BLOCK; j++) {
                 if (visitedLetters[i][j] != 0) {
                     g.setColor(Color.YELLOW); // Background in Yellow for visited cells
                 } else {
@@ -77,7 +79,7 @@ public class AlphabetWalkerCanvas extends JPanel {
 
                 if (visitedLetters[i][j] != 0) {
                     g.setColor(Color.BLACK);
-                    g.drawString(String.valueOf(visitedLetters[i][j]), startX + j * cellSize + 10, startY + i * cellSize + 20);
+                    g.drawString(String.valueOf(visitedLetters[i][j]), startX + j * cellSize + BLOCK, startY + i * cellSize + 20);
                 }
             }
         }
@@ -87,7 +89,7 @@ public class AlphabetWalkerCanvas extends JPanel {
         JFrame frame = new JFrame("Alphabet Walker");
         AlphabetWalkerCanvas canvas = new AlphabetWalkerCanvas();
         frame.add(canvas);
-        frame.setSize(400, 400);
+        frame.setSize(SIZE, SIZE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
