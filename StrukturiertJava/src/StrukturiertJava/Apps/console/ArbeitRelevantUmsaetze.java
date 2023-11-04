@@ -4,6 +4,7 @@ public class ArbeitRelevantUmsaetze {
     static Scanner sc;
     public static void printRevenues(int[][] revenues){
         System.out.print("revenues: \n");
+
         for (int[] revenue : revenues) {
             for (int i : revenue) {
                 System.out.printf("%2d ", i);
@@ -15,14 +16,12 @@ public class ArbeitRelevantUmsaetze {
     public static int[][] scanRevenues(int branches, int days){
         int[][] revenues = new int[branches][days];
 
-
         for(int i=0; i<revenues.length; i++){
             for(int j=0; j<revenues[i].length; j++){
-                System.out.print(": ");
+                System.out.println("Enter revenue for branch " + (i+1) + " on day " + (j+1) + ": ");
                 revenues[i][j]=sc.nextInt();
             }
         }
-
 
         return revenues;
     }
@@ -34,7 +33,6 @@ public class ArbeitRelevantUmsaetze {
                 if (j == day) sum = sum + revenue[j];
             }
         }
-
         return sum;
     }
 
@@ -48,7 +46,6 @@ public class ArbeitRelevantUmsaetze {
     public static int[] daySummary(int[][] revenues){
         int[] summary = new int[revenues[0].length];
         for(int i=0; i<summary.length; i++) summary[i] = sumDay(revenues, i);
-
 
         return summary;
     }
@@ -101,12 +98,12 @@ public class ArbeitRelevantUmsaetze {
         for (int value : daySummary) System.out.printf("%d ", value);
 
         int maxDay=maxIdx(daySummary);
-        System.out.printf("\nmax day is day %d with total revenue of %d.\n", maxDay, sumDay(revenues, maxDay));
+        System.out.printf("\nmax day is day %d with total revenue of %d.\n", maxDay+1, sumDay(revenues, maxDay));
         int[] branchSummary = branchSummary(revenues);
         System.out.print("branch Summary: ");
         for (int k : branchSummary) System.out.printf("%d ", k);
         int maxBranch=maxIdx(branchSummary);
-        System.out.printf("\nmax branch is branch %d with total revenue of %d.\n", maxBranch, sumBranch(revenues, maxBranch));
+        System.out.printf("\nmax branch is branch %d with total revenue of %d.\n", maxBranch+1, sumBranch(revenues, maxBranch));
 
         int highestRev = 0;
         for (int[] revenue : revenues) {
@@ -118,7 +115,7 @@ public class ArbeitRelevantUmsaetze {
         sc.close();
 
         int[] maxRev = maxRev(revenues);
-        System.out.printf("max revenue of %d in branch %d on day %d.",highestRev,maxRev[0],maxRev[1]);
+        System.out.printf("max revenue of %d in branch %d on day %d.",highestRev,maxRev[0]+1,maxRev[1]+1);
 
     }
 
@@ -129,15 +126,16 @@ public class ArbeitRelevantUmsaetze {
 
     public static void main(String[] args) {
         sc = new Scanner(System.in);
-        Test[] tests = {new PrintRevenueTest(),
+        Test[] tests = {
+                new AppTest(),
+                new PrintRevenueTest(),
                 new ScanRevenuesTest(),
                 new SumDayTest(),
                 new SumBranchTest(),
                 new DaySummaryTest(),
                 new BranchSummaryTest(),
                 new MaxIdxTest(),
-                new MaxRevTest(),
-                new AppTest()
+                new MaxRevTest()
 
         };
 
@@ -204,18 +202,15 @@ public class ArbeitRelevantUmsaetze {
 
         @Override
         protected void exec() {
+            System.out.print("branches: ");
             int branches=sc.nextInt();
+            System.out.print("days: ");
             int days = sc.nextInt();
             int[][] rev =scanRevenues(branches, days);
             printRevenues(rev);
 
         }
-
-
     }
-
-
-
 
 
     private static final class SumDayTest extends Test{
@@ -223,26 +218,26 @@ public class ArbeitRelevantUmsaetze {
         @Override
         protected void exec() {
             int[][] rev = {
-                    {121, 146, 126, 111, 152},  //
-                    {129, 127, 195, 189, 130}, //
-                    {199, 131, 197, 187, 117}, //
-                    {106, 163, 173, 186, 133}, //
-                    {118, 125, 140, 170, 119}, //
-                    {193, 158, 192, 169, 124}, //
-                    {120, 165, 157, 162, 134}, //
-                    {114, 155, 181, 132, 159}, //
-                    {191, 144, 112, 190, 115}, //
-                    {161, 176, 137, 142, 153}, //
-                    {100, 179, 136, 183, 122}, //
-                    {99, 151, 184, 141, 194}, //
-                    {166, 109, 188, 143, 116}, //
-                    {182, 171, 198, 138, 145}, //
-                    {175, 178, 123, 174, 113}, //
-                    {101, 185, 135, 107, 147}, //
-                    {172, 103, 149, 108, 180}, //
-                    {139, 156, 167, 154, 196}, //
-                    {128, 110, 160, 105, 164}, //
-                    {148, 102, 150, 177, 168} //
+                    {121, 146, 126, 111, 152},
+                    {129, 127, 195, 189, 130},
+                    {199, 131, 197, 187, 117},
+                    {106, 163, 173, 186, 133},
+                    {118, 125, 140, 170, 119},
+                    {193, 158, 192, 169, 124},
+                    {120, 165, 157, 162, 134},
+                    {114, 155, 181, 132, 159},
+                    {191, 144, 112, 190, 115},
+                    {161, 176, 137, 142, 153},
+                    {100, 179, 136, 183, 122},
+                    {99, 151, 184, 141, 194},
+                    {166, 109, 188, 143, 116},
+                    {182, 171, 198, 138, 145},
+                    {175, 178, 123, 174, 113},
+                    {101, 185, 135, 107, 147},
+                    {172, 103, 149, 108, 180},
+                    {139, 156, 167, 154, 196},
+                    {128, 110, 160, 105, 164},
+                    {148, 102, 150, 177, 168}
             };
             System.out.printf("%d\n",sumDay(rev, sc.nextInt()));
         }
@@ -254,26 +249,26 @@ public class ArbeitRelevantUmsaetze {
         @Override
         protected void exec() {
             int[][] rev = {
-                    {121, 146, 126, 111, 152},  //
-                    {129, 127, 195, 189, 130}, //
-                    {199, 131, 197, 187, 117}, //
-                    {106, 163, 173, 186, 133}, //
-                    {118, 125, 140, 170, 119}, //
-                    {193, 158, 192, 169, 124}, //
-                    {120, 165, 157, 162, 134}, //
-                    {114, 155, 181, 132, 159}, //
-                    {191, 144, 112, 190, 115}, //
-                    {161, 176, 137, 142, 153}, //
-                    {100, 179, 136, 183, 122}, //
-                    {99, 151, 184, 141, 194}, //
-                    {166, 109, 188, 143, 116}, //
-                    {182, 171, 198, 138, 145}, //
-                    {175, 178, 123, 174, 113}, //
-                    {101, 185, 135, 107, 147}, //
-                    {172, 103, 149, 108, 180}, //
-                    {139, 156, 167, 154, 196}, //
-                    {128, 110, 160, 105, 164}, //
-                    {148, 102, 150, 177, 168} //
+                    {121, 146, 126, 111, 152},
+                    {129, 127, 195, 189, 130},
+                    {199, 131, 197, 187, 117},
+                    {106, 163, 173, 186, 133},
+                    {118, 125, 140, 170, 119},
+                    {193, 158, 192, 169, 124},
+                    {120, 165, 157, 162, 134},
+                    {114, 155, 181, 132, 159},
+                    {191, 144, 112, 190, 115},
+                    {161, 176, 137, 142, 153},
+                    {100, 179, 136, 183, 122},
+                    {99, 151, 184, 141, 194},
+                    {166, 109, 188, 143, 116},
+                    {182, 171, 198, 138, 145},
+                    {175, 178, 123, 174, 113},
+                    {101, 185, 135, 107, 147},
+                    {172, 103, 149, 108, 180},
+                    {139, 156, 167, 154, 196},
+                    {128, 110, 160, 105, 164},
+                    {148, 102, 150, 177, 168}
             };
             System.out.printf("%d\n",sumBranch(rev, sc.nextInt()));
         }
@@ -284,26 +279,26 @@ public class ArbeitRelevantUmsaetze {
         @Override
         protected void exec() {
             int[][] rev = {
-                    {121, 146, 126, 111, 152},  //
-                    {129, 127, 195, 189, 130}, //
-                    {199, 131, 197, 187, 117}, //
-                    {106, 163, 173, 186, 133}, //
-                    {118, 125, 140, 170, 119}, //
-                    {193, 158, 192, 169, 124}, //
-                    {120, 165, 157, 162, 134}, //
-                    {114, 155, 181, 132, 159}, //
-                    {191, 144, 112, 190, 115}, //
-                    {161, 176, 137, 142, 153}, //
-                    {100, 179, 136, 183, 122}, //
-                    {99, 151, 184, 141, 194}, //
-                    {166, 109, 188, 143, 116}, //
-                    {182, 171, 198, 138, 145}, //
-                    {175, 178, 123, 174, 113}, //
-                    {101, 185, 135, 107, 147}, //
-                    {172, 103, 149, 108, 180}, //
-                    {139, 156, 167, 154, 196}, //
-                    {128, 110, 160, 105, 164}, //
-                    {148, 102, 150, 177, 168} //
+                    {121, 146, 126, 111, 152},
+                    {129, 127, 195, 189, 130},
+                    {199, 131, 197, 187, 117},
+                    {106, 163, 173, 186, 133},
+                    {118, 125, 140, 170, 119},
+                    {193, 158, 192, 169, 124},
+                    {120, 165, 157, 162, 134},
+                    {114, 155, 181, 132, 159},
+                    {191, 144, 112, 190, 115},
+                    {161, 176, 137, 142, 153},
+                    {100, 179, 136, 183, 122},
+                    {99, 151, 184, 141, 194},
+                    {166, 109, 188, 143, 116},
+                    {182, 171, 198, 138, 145},
+                    {175, 178, 123, 174, 113},
+                    {101, 185, 135, 107, 147},
+                    {172, 103, 149, 108, 180},
+                    {139, 156, 167, 154, 196},
+                    {128, 110, 160, 105, 164},
+                    {148, 102, 150, 177, 168}
             };
             for(int n:daySummary(rev))
                 System.out.printf("%d ", n);
@@ -317,26 +312,26 @@ public class ArbeitRelevantUmsaetze {
         @Override
         protected void exec() {
             int[][] rev = {
-                    {121, 146, 126, 111, 152},  //
-                    {129, 127, 195, 189, 130}, //
-                    {199, 131, 197, 187, 117}, //
-                    {106, 163, 173, 186, 133}, //
-                    {118, 125, 140, 170, 119}, //
-                    {193, 158, 192, 169, 124}, //
-                    {120, 165, 157, 162, 134}, //
-                    {114, 155, 181, 132, 159}, //
-                    {191, 144, 112, 190, 115}, //
-                    {161, 176, 137, 142, 153}, //
-                    {100, 179, 136, 183, 122}, //
-                    {99, 151, 184, 141, 194}, //
-                    {166, 109, 188, 143, 116}, //
-                    {182, 171, 198, 138, 145}, //
-                    {175, 178, 123, 174, 113}, //
-                    {101, 185, 135, 107, 147}, //
-                    {172, 103, 149, 108, 180}, //
-                    {139, 156, 167, 154, 196}, //
-                    {128, 110, 160, 105, 164}, //
-                    {148, 102, 150, 177, 168} //
+                    {121, 146, 126, 111, 152},
+                    {129, 127, 195, 189, 130},
+                    {199, 131, 197, 187, 117},
+                    {106, 163, 173, 186, 133},
+                    {118, 125, 140, 170, 119},
+                    {193, 158, 192, 169, 124},
+                    {120, 165, 157, 162, 134},
+                    {114, 155, 181, 132, 159},
+                    {191, 144, 112, 190, 115},
+                    {161, 176, 137, 142, 153},
+                    {100, 179, 136, 183, 122},
+                    {99, 151, 184, 141, 194},
+                    {166, 109, 188, 143, 116},
+                    {182, 171, 198, 138, 145},
+                    {175, 178, 123, 174, 113},
+                    {101, 185, 135, 107, 147},
+                    {172, 103, 149, 108, 180},
+                    {139, 156, 167, 154, 196},
+                    {128, 110, 160, 105, 164},
+                    {148, 102, 150, 177, 168}
             };
             for(int n:branchSummary(rev))
                 System.out.printf("%d ", n);
@@ -351,26 +346,26 @@ public class ArbeitRelevantUmsaetze {
         @Override
         protected void exec() {
             int[][] rev = {
-                    {121, 146, 126, 111, 152},  //
-                    {129, 127, 195, 189, 130}, //
-                    {199, 131, 197, 187, 117}, //
-                    {106, 163, 173, 186, 133}, //
-                    {118, 125, 140, 170, 119}, //
-                    {193, 158, 192, 169, 124}, //
-                    {120, 165, 157, 162, 134}, //
-                    {114, 155, 181, 132, 159}, //
-                    {191, 144, 112, 190, 115}, //
-                    {161, 176, 137, 142, 153}, //
-                    {100, 179, 136, 183, 122}, //
-                    {99, 151, 184, 141, 194}, //
-                    {166, 109, 188, 143, 116}, //
-                    {182, 171, 198, 138, 145}, //
-                    {175, 178, 123, 174, 113}, //
-                    {101, 185, 135, 107, 147}, //
-                    {172, 103, 149, 108, 180}, //
-                    {139, 156, 167, 154, 196}, //
-                    {128, 110, 160, 105, 164}, //
-                    {148, 102, 150, 177, 168} //
+                    {121, 146, 126, 111, 152},
+                    {129, 127, 195, 189, 130},
+                    {199, 131, 197, 187, 117},
+                    {106, 163, 173, 186, 133},
+                    {118, 125, 140, 170, 119},
+                    {193, 158, 192, 169, 124},
+                    {120, 165, 157, 162, 134},
+                    {114, 155, 181, 132, 159},
+                    {191, 144, 112, 190, 115},
+                    {161, 176, 137, 142, 153},
+                    {100, 179, 136, 183, 122},
+                    {99, 151, 184, 141, 194},
+                    {166, 109, 188, 143, 116},
+                    {182, 171, 198, 138, 145},
+                    {175, 178, 123, 174, 113},
+                    {101, 185, 135, 107, 147},
+                    {172, 103, 149, 108, 180},
+                    {139, 156, 167, 154, 196},
+                    {128, 110, 160, 105, 164},
+                    {148, 102, 150, 177, 168}
             };
             System.out.printf("%d\n",maxIdx(rev[0]));
             System.out.println();
